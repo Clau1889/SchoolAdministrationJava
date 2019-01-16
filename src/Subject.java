@@ -1,3 +1,5 @@
+
+
 public class Subject {
 
     private String[] subjects= {"spanish", "chemistry", "english", "mathematics"};
@@ -12,22 +14,27 @@ public class Subject {
 
 
 
-    public Boolean validateSubject(String subject){
+
+    //Validate the subject exist into the Subjects´ Array.
+    public void validateSubject(String subject){
         String validateSubject= subject.toLowerCase();
+        grade= -1;
 
         if(validateSubject.equals("spanish") || validateSubject.equals("chemistry") || validateSubject.equals("english" ) || validateSubject.equals("mathematics")){
-            System.out.println("Subject was funded.");
-            return true;
+            System.out.println("Subject: " + validateSubject + "\n" + "Grade: " + grade);
+
 
         } else {
             System.out.println("Subject was not found.");
-            return false;
+
         }
     }
-    
+
+
 
     public static void main (String[] args){
         Subject subjectsStudent= new Subject();
-        subjectsStudent.validateSubject("CHEMISTRY");
+        subjectsStudent.validateSubject("algebra");
+
     }
 }
