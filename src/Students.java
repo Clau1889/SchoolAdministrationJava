@@ -3,13 +3,12 @@ import java.lang.*;
 public class Students {
     private Integer id;
     private String studentName, level, grade;
-    private Object levels;
 
 
+    /*     Validate: ID length : 5 digits, starts with 5.
+       Incorrect enter ID ---> Default 0  */
     public Integer getId() { return id; }
 
-    /*     Validate: ID lenght : 5 digits, starts with 5.
-           Incorrect enter ID ---> Default 0                */
     public void setId(Integer id) {
         this.id = id;
         String str_id= Integer.toString(id);
@@ -31,19 +30,11 @@ public class Students {
     public void setStudentName(String studentName) { this.studentName = studentName; }
 
 
-    public String getGrade() { return grade; }
-    public void setGrade(String grade) { this.grade = grade; }
 
-
-
-
-    //Set of static levels
-    public enum levels {
-        KINDERGARTEN, MIDDLESCHOOL, HIGHSCHOOL;
-
-    }
-
+    /* Verify if Student´s level is: Kindergarten, MiddleSchool or HighSchool
+   Default --> word LEVEL*/
     public String getLevel() { return level; }
+
     public void setLevel(String level) {
         this.level = level;
         String accLevel= level.toUpperCase();
@@ -69,11 +60,34 @@ public class Students {
     }
 
 
+    public String getGrade() { return grade; }
+    public void setGrade(String grade) { this.grade = grade; }
+
+
+    /* Verify if grade is equal to 1ro, 2do, 3ro, 4to, 5to, 6to.*/
+    public String validateGrade(String gradeLevel){
+        this.grade= gradeLevel;
+
+        if (gradeLevel.equals("1ro") || gradeLevel.equals("2do") | gradeLevel.equals("3ro")
+                || gradeLevel.equals("4to") || gradeLevel.equals("5to") || gradeLevel.equals("6to")){
+
+            System.out.println("Grade: " + gradeLevel + ".");
+
+            return gradeLevel;
+        } else {
+
+            System.out.println("Grade invalid");
+            return null;
+        }
+
+    }
+
 
     public static void main(String[] args){
         Students dataStudents= new Students();
-        dataStudents.setId(56780);
-        dataStudents.setLevel("KINDERGARTEN");
+        dataStudents.setId(56483);
+        dataStudents.setLevel("");
+        dataStudents.validateGrade("");
 
         //List<Subject> subjects= new ArrayList<Subject>();
 
