@@ -25,8 +25,31 @@ public class Employees {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
+
+    /* Verify if Employee´s career is: Teacher, Director or Admistrator
+   Default --> word Career*/
     public String getCareer() {return career; }
-    public void setCareer(String career) { this.career = career; }
+    public void setCareer(String career) {
+        this.career = career;
+        String currentCareer= career.toUpperCase();
+
+
+        switch(currentCareer){
+            case "TEACHER":
+                System.out.println("Career: " + currentCareer);
+                break;
+
+            case "DIRECTOR":
+                System.out.println("Career: " + currentCareer);
+                break;
+
+            case "ADMINISTRATOR":
+                System.out.println("Career: " + currentCareer);
+                break;
+
+            default:
+                System.out.println("Career");
+        }}
 
     public String getGroup() { return group; }
     public void setGroup(String group) { this.group = group; }
@@ -34,12 +57,9 @@ public class Employees {
 
 
 
-
-
-
-
     public static void main (String[] args) {
     Employees dataEmployee= new Employees();
-    dataEmployee.setId(23);
+    dataEmployee.setId(12234);
+    dataEmployee.setCareer("director");
     }
 }
