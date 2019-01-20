@@ -1,33 +1,38 @@
 import java.lang.*;
+import java.util.*;
 
 public class Students {
     private Integer id;
     private String studentName, level, grade;
+    List<String> listSubjects = new ArrayList<String>();
 
 
     /*     Validate: ID length : 5 digits, starts with 5.
        Incorrect enter ID ---> Default 0  */
     public Integer getId() { return id; }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer idd) {
+        this.id = idd;
         String str_id= Integer.toString(id);
 
         //Validate that length = 5 digits AND start with 5
         if (str_id.length() == 5 && str_id.charAt(0) == '5' ) {
-
-            System.out.println("ID: " + id );
+            this.id= idd;
+            System.out.println("ID: " + id);
 
         }else {
-            int defaultId= 0;
-            System.out.println("id: " + defaultId);
+            this.id= 0;
+            System.out.println("id: " + id);
 
         }
     }
 
 
     public String getStudentName() { return studentName; }
-    public void setStudentName(String studentName) { this.studentName = studentName; }
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+        System.out.println("Student: " + studentName);
+    }
 
 
 
@@ -42,15 +47,18 @@ public class Students {
 
         switch(accLevel){
             case "KINDERGARTEN":
-                System.out.println("Level: " + accLevel);
+                this.level= "KINDERGARTEN";
+                System.out.println("Level: " + this.level);
                 break;
 
             case "MIDDLESCHOOL":
-                System.out.println("Level: " + accLevel);
+                this.level= "MIDDLESCHOOL";
+                System.out.println("Level: " + this.level);
                 break;
 
             case "HIGHSCHOOL":
-                System.out.println("Level: " + accLevel);
+                this.level= "HIGHSCHOOL";
+                System.out.println("Level: " + this.level);
                 break;
 
             default:
@@ -61,35 +69,37 @@ public class Students {
 
 
     public String getGrade() { return grade; }
-    public void setGrade(String grade) { this.grade = grade; }
+    public void setGrade(String grade) {
+        this.grade = grade;
 
+        if (grade.equals("1ro") || grade.equals("2do") || grade.equals("3ro")
+                || grade.equals("4to") || grade.equals("5to") ||grade.equals("6to")){
+            this.grade= grade;
+            System.out.println("Grade: " + grade + ".");
 
-    /* Verify if grade is equal to 1ro, 2do, 3ro, 4to, 5to, 6to.*/
-    public String validateGrade(String gradeLevel){
-        this.grade= gradeLevel;
-
-        if (gradeLevel.equals("1ro") || gradeLevel.equals("2do") | gradeLevel.equals("3ro")
-                || gradeLevel.equals("4to") || gradeLevel.equals("5to") || gradeLevel.equals("6to")){
-
-            System.out.println("Grade: " + gradeLevel + ".");
-
-            return gradeLevel;
         } else {
+            this.grade="Grade invalid";
+            System.out.println(this.grade);
 
-            System.out.println("Grade invalid");
-            return null;
         }
+    }
 
+    
+    //Constructor
+    public Students(int id, String name, String level, String grade){
+        setId(id);
+        setStudentName(name);
+        setLevel(level);
+        setGrade(grade);
     }
 
 
     public static void main(String[] args){
-        Students dataStudents= new Students();
-        dataStudents.setId(56483);
-        dataStudents.setLevel("");
-        dataStudents.validateGrade("");
+        Students dataStudents= new Students(3445, "Samuel", "HighSchool", "5vo");
+        Students student1= new Students(54444, "Rodolfo", "Kindergarten", "3ro");
 
-        //List<Subject> subjects= new ArrayList<Subject>();
+        //List<String> subjects= new ArrayList<>();
+
 
     }
 
