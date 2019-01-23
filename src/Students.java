@@ -23,13 +23,12 @@ public class Students {
        Incorrect enter ID ---> Default 0  */
     public Integer getId() { return id; }
 
-    public void setId(Integer idd) {
-        this.id = idd;
+    public void setId(Integer id) {
         String str_id= Integer.toString(id);
 
         //Validate that length = 5 digits AND start with 5
         if (str_id.length() == 5 && str_id.charAt(0) == '5' ) {
-            this.id= idd;
+            this.id= id;
 
         }else {
             this.id= 0;
@@ -44,7 +43,6 @@ public class Students {
    Default --> word LEVEL*/
     public String getLevel() { return level; }
     public void setLevel(String level) {
-        this.level = level;
         String accLevel= level.toUpperCase();
 
 
@@ -65,37 +63,41 @@ public class Students {
                 break;
 
             default:
-
+                this.level= "LEVEL";
         }
 
     }
 
 
-    //Validate just receive those grades in that format.
+    //Validate just receive those grades in that format and in a specific level.
     public String getGrade() { return grade; }
     public void setGrade(String grade) {
-        this.grade = grade;
 
-        if (grade.equals("1ro") || grade.equals("2do") || grade.equals("3ro")
-                || grade.equals("4to") || grade.equals("5to") ||grade.equals("6to")){
+        if (grade.equals("1ro") || grade.equals("2do") || grade.equals("3ro") && (getLevel().equals("KINDERGARTEN"))){
             this.grade= grade;
 
+        }else if ((grade.equals("1ro") || grade.equals("2do") || grade.equals("3ro") || grade.equals("4to")
+                || grade.equals("5to")|| grade.equals("6to")) && (getLevel().equals("MIDDLESCHOOL"))){
+            this.grade= grade;
 
-        } else {
-            this.grade="Grade invalid.";
+        }else if ((grade.equals("1ro") || grade.equals("2do") || grade.equals("3ro")) && (getLevel().equals("HIGSCHOOL"))){
+            this.grade= grade;
 
+        }else {
+            this.grade = "Grade invalid.";
         }
+
     }
 
 
 
     //Constructor
-    public Students(int id, String name, String level, String grade, List<Subject> listSubjects){
+    public Students(int id, String name, String level, String grade){
         setId(id);
         setStudentName(name);
         setLevel(level);
         setGrade(grade);
-        setListSubjects(listSubjects);
+
     }
 
 
