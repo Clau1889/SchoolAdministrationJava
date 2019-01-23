@@ -4,7 +4,9 @@ import java.util.*;
 public class Students {
     private Integer id;
     private String studentName, level, grade;
-    List<String> listSubjects = new ArrayList<String>();
+    private List<Subject> listSubjects= new ArrayList<>();
+
+
 
 
     /*     Validate: ID length : 5 digits, starts with 5.
@@ -18,11 +20,11 @@ public class Students {
         //Validate that length = 5 digits AND start with 5
         if (str_id.length() == 5 && str_id.charAt(0) == '5' ) {
             this.id= idd;
-            System.out.println("ID: " + id);
+            //System.out.println("ID: " + id);
 
         }else {
             this.id= 0;
-            System.out.println("id: " + id);
+            //System.out.println("id: " + id);
 
         }
     }
@@ -31,7 +33,7 @@ public class Students {
     public String getStudentName() { return studentName; }
     public void setStudentName(String studentName) {
         this.studentName = studentName;
-        System.out.println("Student: " + studentName);
+        //System.out.println("Student: " + studentName);
     }
 
 
@@ -48,21 +50,21 @@ public class Students {
         switch(accLevel){
             case "KINDERGARTEN":
                 this.level= "KINDERGARTEN";
-                System.out.println("Level: " + this.level);
+                //System.out.println("Level: " + this.level);
                 break;
 
             case "MIDDLESCHOOL":
                 this.level= "MIDDLESCHOOL";
-                System.out.println("Level: " + this.level);
+                //System.out.println("Level: " + this.level);
                 break;
 
             case "HIGHSCHOOL":
                 this.level= "HIGHSCHOOL";
-                System.out.println("Level: " + this.level);
+                //System.out.println("Level: " + this.level);
                 break;
 
             default:
-                System.out.println("Level");
+                //System.out.println("Level");
         }
 
     }
@@ -75,32 +77,29 @@ public class Students {
         if (grade.equals("1ro") || grade.equals("2do") || grade.equals("3ro")
                 || grade.equals("4to") || grade.equals("5to") ||grade.equals("6to")){
             this.grade= grade;
-            System.out.println("Grade: " + grade + ".");
+            //System.out.println("Grade: " + grade + ".");
 
         } else {
-            this.grade="Grade invalid";
-            System.out.println(this.grade);
+            this.grade="Grade invalid.";
+            //System.out.println(this.grade);
 
         }
     }
-
     
+
+    public List<Subject> getListSubjects() { return listSubjects; }
+    public void setListSubjects(List<Subject> listSubjects) { this.listSubjects = listSubjects; }
+
+
+
     //Constructor
-    public Students(int id, String name, String level, String grade){
+    public Students(int id, String name, String level, String grade, List<Subject> listSubjects){
         setId(id);
         setStudentName(name);
         setLevel(level);
         setGrade(grade);
+        setListSubjects(listSubjects);
     }
 
-
-    public static void main(String[] args){
-        Students dataStudents= new Students(3445, "Samuel", "HighSchool", "5vo");
-        Students student1= new Students(54444, "Rodolfo", "Kindergarten", "3ro");
-
-        //List<String> subjects= new ArrayList<>();
-
-
-    }
 
 }
