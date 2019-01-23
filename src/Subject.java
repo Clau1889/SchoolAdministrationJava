@@ -11,12 +11,6 @@ public class Subject {
     public Integer getGrade() { return grade; }
     public void setGrade(Integer grade) { this.grade = grade; }
 
-    /*
-    public Subject(String subject, int grade){
-        setNameSubject(subject);
-        setGrade(grade);
-    }*/
-
 
     public Subject(String subject){
         setNameSubject(subject);
