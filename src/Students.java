@@ -73,14 +73,14 @@ public class Students {
     public String getGrade() { return grade; }
     public void setGrade(String grade) {
 
-        if (grade.equals("1ro") || grade.equals("2do") || grade.equals("3ro") && (getLevel().equals("KINDERGARTEN"))){
+        if (grade.equals("1st") || grade.equals("2nd") || grade.equals("3rd") && (getLevel().equals("KINDERGARTEN"))){
             this.grade= grade;
 
-        }else if ((grade.equals("1ro") || grade.equals("2do") || grade.equals("3ro") || grade.equals("4to")
-                || grade.equals("5to")|| grade.equals("6to")) && (getLevel().equals("MIDDLESCHOOL"))){
+        }else if ((grade.equals("1st") || grade.equals("2nd") || grade.equals("3st") || grade.equals("4th")
+                || grade.equals("5th")|| grade.equals("6th")) && (getLevel().equals("MIDDLESCHOOL"))){
             this.grade= grade;
 
-        }else if ((grade.equals("1ro") || grade.equals("2do") || grade.equals("3ro")) && (getLevel().equals("HIGSCHOOL"))){
+        }else if ((grade.equals("1st") || grade.equals("2nd") || grade.equals("3rd")) && (getLevel().equals("HIGSCHOOL"))){
             this.grade= grade;
 
         }else {
@@ -89,16 +89,6 @@ public class Students {
 
     }
 
-
-
-    //Constructor
-    public Students(int id, String name, String level, String grade){
-        setId(id);
-        setStudentName(name);
-        setLevel(level);
-        setGrade(grade);
-
-    }
 
 
 }
