@@ -30,7 +30,7 @@ public class StudentsFile {
         student.setGrade(grade);
 
         if (student.getId() == 0) {
-            System.out.println("Student can not added. ID invalid" + "\n");
+            //System.out.println("Student can not added. ID invalid");
             return false;
 
         } else {
@@ -42,7 +42,7 @@ public class StudentsFile {
 
 
             } else {
-                System.out.println("Student can not added. Please, check the ID." );
+                System.out.println("Student can not added. Please, check the ID.");
                 return false;
 
             }
@@ -58,7 +58,7 @@ public class StudentsFile {
         for(int i= 0; i<listStudents.size(); i++){
 
             if(listStudents.get(i).getId()== id){
-                System.out.println("ID " + listStudents.get(i).getId() + " exists in index " + i);
+                //System.out.println("ID " + listStudents.get(i).getId() + " exists in index " + i);
                 return i;
             }
         }
@@ -81,11 +81,11 @@ public class StudentsFile {
 
             if ((addStudent(id, name, level, grade))){
 
-                System.out.println("Subjects were succesfully added." + "\n");
+                //System.out.println("Subjects were succesfully added." + "\n");
                 return true;
 
             } else {
-                System.out.println("Subjects can not added." + "\n");
+                //System.out.println("Subjects can not added." + "\n");
                 return false;
             }
 
@@ -125,12 +125,12 @@ public class StudentsFile {
             System.out.println("This ID cannot be find.");
 
         } else {
-            System.out.println("ID find it.");
+            //System.out.println("ID find it.");
             for(int k= 0; k <listStudents.get(index).getListSubjects().size(); k++){
 
                 if(listStudents.get(index).getListSubjects().get(k).getNameSubject().equals(subject)){
                     listStudents.get(index).getListSubjects().get(k).setGrade(grade);
-                    System.out.println("Grade stored.");
+                    //System.out.println("Grade stored.");
                     break;
                 }
             }
@@ -170,22 +170,33 @@ public class StudentsFile {
 
 
 
-    /* If a student is at 3rd.Kindergarten or 6th.MiddleSchool or 3rd.HighSchool
-    he/she could be ascend to the next level
-    public void ascendLevel (Students student){
 
-        for(int j=0; j<listStudents.size(); j++) {
-            if (((getIndexStudentFromList(student) != -1 ) && ((student.getGrade().equals("3rd") && student.getLevel().equals("KINDERGARTEN"))))){
-                System.out.print("This student could be promoted to the next level");
-            } else if (((getIndexStudentFromList(student) != -1 ) && (student.getGrade().equals("6th") && student.getLevel().equals("MIDDLESCHOOL")))) {
-                System.out.print("This student could be promoted to the next level");
-            } else if (((getIndexStudentFromList(student) != -1 ) && (student.getGrade().equals("3rd") && student.getLevel().equals("HIGHSCHOOL")))) {
-                System.out.print("This student is: " + student.getLevel());
-            } else {
-                System.out.print("This student could not be promoted yet");
-            }
+    /*    *******************************************************************************************************
+     *     IF A STUDENT IS IN:    -  3rd. kindergarten a msg will be sent to promote to MiddleSchool.
+     *                            -  6th. MiddleSchool a msg will be sent to promote to HighSchool.
+     *                            -  3rd. Highschool this Student is Graduate.
+     *
+     *  **********************************************************************************************************/
+        public void ascendLevel (int id){
+            int index= getIndexStudentFromList(id);
+
+                if((index != -1) && ((getListStudents().get(index).getGrade().equals("3rd.")) && (getListStudents().get(index).getLevel().equals("KINDERGARTEN")))){
+                    System.out.println("Promote to MiddleSchool.");
+                    return;
+                } else if((index != -1) && ((getListStudents().get(index).getGrade().equals("6th.")) && (getListStudents().get(index).getLevel().equals("MIDDLESCHOOL")))){
+                    System.out.println("Promote to HighSchool.");
+
+                } else if((index != -1) && ((getListStudents().get(index).getGrade().equals("3rd.")) && (getListStudents().get(index).getLevel().equals("HIGHSCHOOL")))){
+                    System.out.println("Student Graduate.");
+
+                } else {
+                    System.out.println("This student could not be promoted.");
+                }
+
         }
-    }*/
+
+
+
 
 
 
@@ -204,9 +215,9 @@ public class StudentsFile {
         Subject subject6= new Subject("Philosophy");
         Subject subject7= new Subject("Chemistry");
         Subject subject8= new Subject("Geography");
-        Subject subject9= new Subject("History");*/
+        Subject subject9= new Subject("History");
 
-/*
+
         List<Subject> listSubjects1 = new ArrayList<>();
         listSubjects1.add(subject1);
         listSubjects1.add(subject8);
@@ -228,7 +239,7 @@ public class StudentsFile {
 
 
         //Add students with idValid and id no repeat.
-        dataStudent.addStudent(56666, "Claudia","kindergarten","3rd");
+        dataStudent.addStudent(56543, "Claudia","kindergarten","3rd");
         dataStudent.addStudent(5543, "Rosa","kindergarten","3rd");
         dataStudent.addStudent(56543, "Israel","kindergarten","2nd");
         dataStudent.addStudent(51111, "Fernando","kindergarten","1st");
@@ -247,7 +258,9 @@ public class StudentsFile {
         dataStudent.fillSubjects(56666, "Geography");
         dataStudent.fillSubjects(50000, "Geography");
 
-        dataStudent.gradeSubject(50000, "Geography", 8);
+        dataStudent.gradeSubject(58789, "Geography", 8);
+
+        dataStudent.ascendLevel(50000);
 
         dataStudent.allListStudent();
 
