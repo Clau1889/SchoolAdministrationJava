@@ -11,13 +11,11 @@ public class Subject {
     public Integer getGrade() { return grade; }
     public void setGrade(Integer grade) { this.grade = grade; }
 
-
+    //Constructor
     public Subject(String subject){
         setNameSubject(subject);
 
     }
-
-
 
 }
 
