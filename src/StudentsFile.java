@@ -182,8 +182,61 @@ public class StudentsFile {
 
 
 
+    /*    *******************************************************************************************************
+     *    REPORT LIST OF STUDENTS PER GROUP :                                                                                  *
+     *              - GET ALL DATA.                                                    *
+     *  **********************************************************************************************************/
+
+    //> imprimir en pantalla los alumnos de cierto grado y nivel, manejar mensajes de validación correspondientes, todos los datos incluyendo las materias
+   /* public void reportListGroup (String grade, String level){
+
+        for (int i= 0; i< getListStudents().size(); i++){
+
+            if(getListStudents().get(i).getGrade().equals("1st.") && (getListStudents().get(i).getLevel().equals("KINDERGARTEN"))){
+                System.out.print("Students from: " + grade + level + "\n");
+
+            }
+        }
+
+    }*/
 
 
+
+
+    /*    *******************************************************************************************************
+     *    REPORT EACH STUDENT:                                                                                  *
+     *              - GET WHOLE STUDENT´S DATA SEARCHED FOR ID.                                                    *
+     *  **********************************************************************************************************/
+
+    //> imprimir todos los datos de cierto alumno incluyendo las materias y sus calificaciones, con cierto id q reciba, manejar mensajes de validación correspondientes
+        public Boolean eachDataStudent (int id){
+            int indexStudent= getIndexStudentFromList(id);
+            int gotIdStudent= getListStudents().get(indexStudent).getId();
+
+
+            if(indexStudent != -1){
+
+
+                    System.out.println("\n" +  "Student´s Information: " + gotIdStudent);
+                    System.out.println(" ************** STUDENT **************");
+                    System.out.println("ID: " + getListStudents().get(indexStudent).getId() + "\n" + "\n"
+                            + "            Name: " + getListStudents().get(indexStudent).getStudentName()+ "\n"
+                            + "            Grade: " + getListStudents().get(indexStudent).getGrade() + "\n"
+                            + "            Level: " + getListStudents().get(indexStudent).getLevel() + "\n");
+                    System.out.println("           --- SUBJECTS ---          ");
+
+                for (int i = 0; i < getListStudents().get(indexStudent).getListSubjects().size(); i++) {
+                    System.out.println("            Subject: " + getListStudents().get(indexStudent).getListSubjects().get(i).getNameSubject() + "\n"
+                            + "            grade: " + getListStudents().get(indexStudent).getListSubjects().get(i).getGrade() + "\n");
+                }
+
+                return true;
+
+            }else {
+                System.out.println("Student cannot be found.");
+                 return false;
+            }
+        }
 
 
 
@@ -192,7 +245,7 @@ public class StudentsFile {
      *
      *  **********************************************************************************************************/
     /*PAINTING ALL STUDENTS EXIST WITHIN LIST*/
-    public void printListStudent() {
+    public Boolean printListStudent() {
 
         for (Students st : listStudents) {
             System.out.println(" ************** STUDENT **************");
@@ -212,6 +265,8 @@ public class StudentsFile {
             System.out.println("*************************************");
             System.out.println("\n");
         }
+
+        return true;
     }
 
 
@@ -254,6 +309,8 @@ public class StudentsFile {
         Subject art1= new Subject("Art");
         Subject art2= new Subject("Art");
         Subject art3= new Subject("Art");
+
+
 
         List<Subject> listSubjects1 = new ArrayList<>();
         listSubjects1.add(spanish1);
@@ -323,11 +380,11 @@ public class StudentsFile {
         dataStudent.ascendLevel(55555);
         dataStudent.ascendLevel(56666);
         dataStudent.ascendLevel(57777);
-        dataStudent.ascendLevel(58888);
 
 
-        dataStudent.printListStudent();
+        //dataStudent.printListStudent();
 
+        dataStudent.eachDataStudent(50000);
 
 
 
