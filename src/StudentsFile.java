@@ -187,56 +187,77 @@ public class StudentsFile {
      *              - GET ALL DATA.                                                    *
      *  **********************************************************************************************************/
 
-    //> imprimir en pantalla los alumnos de cierto grado y nivel, manejar mensajes de validación correspondientes, todos los datos incluyendo las materias
-   /* public void reportListGroup (String grade, String level){
+    // imprimir en pantalla los alumnos de cierto grado y nivel, manejar mensajes de validación correspondientes, todos los datos incluyendo las materias
+    public void reportListGroup (String grade, String level){
+        
 
-        for (int i= 0; i< getListStudents().size(); i++){
+        for(int i= 0; i< getListStudents().size(); i++){
 
-            if(getListStudents().get(i).getGrade().equals("1st.") && (getListStudents().get(i).getLevel().equals("KINDERGARTEN"))){
-                System.out.print("Students from: " + grade + level + "\n");
+            if((getListStudents().get(i).getGrade().equals(grade) && (getListStudents().get(i).getLevel().equals(level)))){
+                System.out.println(" ************** STUDENT **************");
+                System.out.println("ID: " + getListStudents().get(i).getId() + "\n" + "\n"
+                        + "            Name: " + getListStudents().get(i).getStudentName() + "\n"
+                        + "            Level: " + getListStudents().get(i).getLevel() + "\n"
+                        + "            Grade: " + getListStudents().get(i).getGrade() + "\n");
+
+
+                System.out.println("           --- SUBJECTS ---          ");
+                for (int j = 0; j < getListStudents().get(i).getListSubjects().size(); j++) {
+                    System.out.println("            Subject: " + getListStudents().get(i).getListSubjects().get(j).getNameSubject() + "\n"
+                            + "            grade: " + getListStudents().get(i).getListSubjects().get(j).getGrade() + "\n");
+                }
+
+
+                System.out.println("*************************************");
+                System.out.println("\n");
+
 
             }
+
         }
 
-    }*/
+        System.out.println("The list cannot be founded.");
+        System.out.println("Please verify the grade and the level you entered.");
+    }
+
+
+
+
+
 
 
 
 
     /*    *******************************************************************************************************
      *    REPORT EACH STUDENT:                                                                                  *
-     *              - GET WHOLE STUDENT´S DATA SEARCHED FOR ID.                                                    *
-     *  **********************************************************************************************************/
-
-    //> imprimir todos los datos de cierto alumno incluyendo las materias y sus calificaciones, con cierto id q reciba, manejar mensajes de validación correspondientes
-        public Boolean eachDataStudent (int id){
+     *              - GET WHOLE STUDENT´S DATA SEARCHED FOR ID.                                                 *
+     *  *********************************************************************************************************/
+        public void eachDataStudent (int id){
             int indexStudent= getIndexStudentFromList(id);
             int gotIdStudent= getListStudents().get(indexStudent).getId();
 
-
             if(indexStudent != -1){
-
-
                     System.out.println("\n" +  "Student´s Information: " + gotIdStudent);
                     System.out.println(" ************** STUDENT **************");
                     System.out.println("ID: " + getListStudents().get(indexStudent).getId() + "\n" + "\n"
                             + "            Name: " + getListStudents().get(indexStudent).getStudentName()+ "\n"
                             + "            Grade: " + getListStudents().get(indexStudent).getGrade() + "\n"
                             + "            Level: " + getListStudents().get(indexStudent).getLevel() + "\n");
-                    System.out.println("           --- SUBJECTS ---          ");
 
+                    System.out.println("           --- SUBJECTS ---          ");
                 for (int i = 0; i < getListStudents().get(indexStudent).getListSubjects().size(); i++) {
                     System.out.println("            Subject: " + getListStudents().get(indexStudent).getListSubjects().get(i).getNameSubject() + "\n"
                             + "            grade: " + getListStudents().get(indexStudent).getListSubjects().get(i).getGrade() + "\n");
                 }
 
-                return true;
 
-            }else {
+            } else {
                 System.out.println("Student cannot be found.");
-                 return false;
             }
+
+
         }
+
 
 
 
@@ -311,7 +332,7 @@ public class StudentsFile {
         Subject art3= new Subject("Art");
 
 
-
+        //Create new instances from List<Subject>
         List<Subject> listSubjects1 = new ArrayList<>();
         listSubjects1.add(spanish1);
         listSubjects1.add(geo1);
@@ -356,22 +377,25 @@ public class StudentsFile {
 
 
         //Add students with idValid and id no repeat.
-        dataStudent.addStudent(50000, "Claudia","hiGHSCHOOL","3rd", listSubjects1 );
-        dataStudent.addStudent(51111, "Fernando","kindergarten", "1st", listSubjects2);
+        dataStudent.addStudent(50000, "Claudia","hiGHSCHOOL","2nd", listSubjects1 );
+        dataStudent.addStudent(51111, "Fernando","kindergarten", "2nd", listSubjects2);
         dataStudent.addStudent(52222, "Fatima","MiddleSchool","5th", listSubjects3);
         dataStudent.addStudent(53333, "Matias","hiGHSCHOOL","3rd", listSubjects4);
-        dataStudent.addStudent(54444, "Mateo","kindergarten","3rd", listSubjects5);
+        dataStudent.addStudent(54444, "Mateo","kindergarten","2nd", listSubjects5);
         dataStudent.addStudent(55555, "Sergio","MiddleSchool","1st", listSubjects6);
         dataStudent.addStudent(56666, "Angelina","kindergarten","2nd", listSubjects7);
         dataStudent.addStudent(57777, "Janeth","MiddLESchooL","6th", listSubjects8);
         //dataStudent.addStudent(51111, "Fabiola","kindergarten","2nd");
         //dataStudent.addStudent(53333, "Israel","kindergarten", "2nd");
 
+
+
         //Store a grade within each subject for Students´ ID
-        dataStudent.gradeSubject(50000, geo1 , 7);
+        //dataStudent.gradeSubject(50000, geo1 , 7);
 
 
-        //To know if a Students can be promoted.
+
+        /*To know if a Students can be promoted.
         dataStudent.ascendLevel(50000);
         dataStudent.ascendLevel(51111);
         dataStudent.ascendLevel(52222);
@@ -379,17 +403,15 @@ public class StudentsFile {
         dataStudent.ascendLevel(54444);
         dataStudent.ascendLevel(55555);
         dataStudent.ascendLevel(56666);
-        dataStudent.ascendLevel(57777);
+        dataStudent.ascendLevel(57777);*/
 
+
+        dataStudent.reportListGroup("4th.", "HIGHSCHOOL");
+
+
+        //dataStudent.eachDataStudent(50000);
 
         //dataStudent.printListStudent();
-
-        dataStudent.eachDataStudent(50000);
-
-
-
-
-
 
 
     }
