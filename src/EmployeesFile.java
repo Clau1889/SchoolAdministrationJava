@@ -201,8 +201,10 @@ public class EmployeesFile {
 
 
 
-    //desasignarGrupo -> Recibe el id del empleado, validar q sea maestro para poder desasignar,
-    // así como el q id del empleado exista en la lista.
+    /*    *******************************************************************************************************
+     *    CHECK THE EMPLOYEE WITH THE ID, AND IF IS A TEACHER REMOVE THE GROUP.                                 *
+     *                                                                                                          *
+     *  *********************************************************************************************************/
     public void removeGroupForTeacher(int id){
         int index= getIndexEmployeeFromList(id);
 
@@ -222,8 +224,34 @@ public class EmployeesFile {
     }
 
 
+
+
     //bajaEmpleado -> Recibe el id del empleado, validar q si es maestro no tenga grupo asignado,
     // así como el q id del empleado exista en la lista.
+    public void removeEmployee(int id){
+        int index= getIndexEmployeeFromList(id);
+
+        if(index != -1){
+            if(getListEmployees().get(index).getCareer().equals("TEACHER") && getListEmployees().get(index).getGroup().equals("Not group")){
+                getListEmployees().get(index).setId(0);
+                getListEmployees().get(index).setName("");
+                getListEmployees().get(index).setCareer("");
+                System.out.println("The employee was removed");
+
+            }else if((getListEmployees().get(index).getCareer().equals("ADMINISTRATOR")) || (getListEmployees().get(index).getCareer().equals("DIRECTOR"))){
+                getListEmployees().get(index).setId(0);
+                getListEmployees().get(index).setName("");
+                getListEmployees().get(index).setCareer("");
+                System.out.println("The employee was removed.");
+
+            }else{
+                System.out.println("The employee cannot be removed.");
+            }
+
+        }else{
+            System.out.println("ID was not found.");
+        }
+    }
 
 
 
@@ -264,8 +292,9 @@ public class EmployeesFile {
 
        //dataEmployee.chooseGroupForTeacher(10010, "3rd", "MIddleSchool");
 
-        //dataEmployee.removeGroupForTeacher(10002);
-       dataEmployee.removeGroupForTeacher(10003);
+       //dataEmployee.removeGroupForTeacher(10003);
+
+        dataEmployee.removeEmployee(10005);
 
        dataEmployee.printAllEmployees();
 
