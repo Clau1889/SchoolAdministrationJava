@@ -203,12 +203,34 @@ public class EmployeesFile {
 
     //desasignarGrupo -> Recibe el id del empleado, validar q sea maestro para poder desasignar,
     // así como el q id del empleado exista en la lista.
+    public void removeGroupForTeacher(int id){
+        int index= getIndexEmployeeFromList(id);
+
+        if(index != -1){
+            if(getListEmployees().get(index).getCareer().equals("TEACHER")){
+                getListEmployees().get(index).setGroup("","");
+                System.out.println("Group was remove");
+
+            }else if(getListEmployees().get(index).getCareer().equals("ADMINISTRATOR") || getListEmployees().get(index).getCareer().equals("DIRECTOR")){
+                System.out.println("Sorry, you cannot remove a group.");
+            }
+
+
+        }else{
+            System.out.println("ID cannot be found.");
+        }
+    }
 
 
     //bajaEmpleado -> Recibe el id del empleado, validar q si es maestro no tenga grupo asignado,
     // así como el q id del empleado exista en la lista.
 
-    //reporteEmpleados -> imprimir todos los empleados y sus datos correspondientes
+
+
+    /*    *******************************************************************************************************
+     *    PRINT THE WHOLE LIST OF EMPLOYEES                                                                     *
+     *                                                                                                          *
+     *  *********************************************************************************************************/
     public void printAllEmployees (){
        for (Employees emp: listEmployees){
            System.out.println("----------     EMPLOYEE     ----------------");
@@ -240,7 +262,10 @@ public class EmployeesFile {
 
        //dataEmployee.changeCareer(10005, "administrator" );
 
-       dataEmployee.chooseGroupForTeacher(10010, "3rd", "MIddleSchool");
+       //dataEmployee.chooseGroupForTeacher(10010, "3rd", "MIddleSchool");
+
+        //dataEmployee.removeGroupForTeacher(10002);
+       dataEmployee.removeGroupForTeacher(10003);
 
        dataEmployee.printAllEmployees();
 
