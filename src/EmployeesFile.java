@@ -71,9 +71,6 @@ public class EmployeesFile {
      *        - FROM ADMINISTRATOR TO DIRECTOR/TEACHER -> ADD GROUP AND DIRECTOR NOT EXISTS.                    *
      *        - FROM TEACHER TO DIRECTOR/ADMINISTRATOR  -> QUIT GROUP TO N/A  AND NOT EXIST OTHER DIRECTOR.      *
      *  *********************************************************************************************************/
-    //Recibe el id del empleado y el nuevo puesto a asignar, validar si cambia de maestro a otro tipo q desasignemos
-    // el grupo y si es a director q no tengamos uno ya existente en la lista de empleados, también validar
-    // q el puesto q estamos recibiendo sea un string valido, así como el q id del empleado exista en la lista.
    public void changeCareer (int id, String changeCareer) {
         int index= getIndexEmployeeFromList(id);
         String addNewCareer= changeCareer.toUpperCase();
@@ -179,8 +176,29 @@ public class EmployeesFile {
     }
 
 
-    //asignarGrupo -> Recibe el id del empleado y el grupo a asignar, validar q sea maestro para poder asignar,
-    // así como el q id del empleado exista en la lista.
+    /*    *******************************************************************************************************
+     *    CHECK THE EMPLOYEE WITH THE ID, AND IF IS A TEACHER SET A GROUP.                                      *
+     *                                                                                                          *
+     *  *********************************************************************************************************/
+    public void chooseGroupForTeacher(int id, String grade, String level){
+        int index= getIndexEmployeeFromList(id);
+
+        if(index != -1){
+           if(getListEmployees().get(index).getCareer().equals("TEACHER")){
+               getListEmployees().get(index).setGroup(grade, level);
+               System.out.println("Group was designed.");
+
+           }else if(getListEmployees().get(index).getCareer().equals("ADMINISTRATOR") || getListEmployees().get(index).getCareer().equals("DIRECTOR")){
+               System.out.println("Sorry, you cannot set a group.");
+           }
+
+        }else{
+            System.out.println("ID doesn´t exist.");
+
+
+        }
+    }
+
 
 
     //desasignarGrupo -> Recibe el id del empleado, validar q sea maestro para poder desasignar,
@@ -220,7 +238,10 @@ public class EmployeesFile {
         //dataEmployee.addEmployee(10001, "Luis", "Director", "5th", "MiddleSchool");
         //dataEmployee.addEmployee(101, "Luis", "Director", "6th", "MiddlesCHOOL");
 
-       dataEmployee.changeCareer(10005, "administrator" );
+       //dataEmployee.changeCareer(10005, "administrator" );
+
+       dataEmployee.chooseGroupForTeacher(10010, "3rd", "MIddleSchool");
+
        dataEmployee.printAllEmployees();
 
     }
