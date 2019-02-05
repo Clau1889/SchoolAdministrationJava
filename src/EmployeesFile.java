@@ -42,7 +42,7 @@ public class EmployeesFile {
                 return true;
             } else {
                 listEmployees.add(employee);
-                System.out.println("Employee was added succesfully.");
+                //System.out.println("Employee was added succesfully.");
 
                 return false;
             }
@@ -74,10 +74,59 @@ public class EmployeesFile {
     //Recibe el id del empleado y el nuevo puesto a asignar, validar si cambia de maestro a otro tipo q desasignemos
     // el grupo y si es a director q no tengamos uno ya existente en la lista de empleados, también validar
     // q el puesto q estamos recibiendo sea un string valido, así como el q id del empleado exista en la lista.
-   public void addNewCareer (int id, String career) {
+   public void changeCareer (int id, String changeCareer) {
         int index= getIndexEmployeeFromList(id);
-        String newCareer= career.toUpperCase();
-        //System.out.println(newCareer);
+        String addNewCareer= changeCareer.toUpperCase();
+        Boolean flag= false;
+
+       for(Employees employee: getListEmployees()) {
+
+           if(index != -1) {
+               if((getListEmployees().get(index).getId().equals(employee.getId()) && (employee.getCareer().equals("TEACHER")))){
+                   System.out.println("This is a teacher");
+
+                   if(getListEmployees().get(index).getCareer().equals(addNewCareer)){
+                       System.out.println("Already is A TEACHER.");
+
+                   } else{
+                       if(addNewCareer=="ADMINISTRATOR"){
+                           getListEmployees().get(index).setCareer(addNewCareer);
+                           System.out.println("Career changed to Administrator");
+
+                       }else if(addNewCareer=="DIRECTOR"){
+                           for(Employees emp: getListEmployees()){
+
+                               if(emp.getCareer()=="DIRECTOR"){
+                                  System.out.println("There is a director already.");
+                                  flag= true;
+
+                               }
+                           }
+
+                           if (flag == false){
+                               getListEmployees().get(index).setCareer(addNewCareer);
+                               System.out.println("Career changed to Director");
+                           }
+
+                       }else{
+                           System.out.println("This career is unavailable.");
+                       }
+                   }
+
+               }else if ((getListEmployees().get(index).getId().equals(employee.getId()) && (employee.getCareer().equals("ADMINISTRATOR"))) ){
+                   System.out.println("This is AN ADMINISTRATOR");
+
+               }else if((getListEmployees().get(index).getId().equals(employee.getId()) && (employee.getCareer().equals("DIRECTOR"))) ){
+                   System.out.println("This is A DIRECTOR.");
+
+               }
+
+
+           } else {
+               System.out.println("ID not exists.");
+
+           }
+       }
 
 
 
@@ -121,13 +170,13 @@ public class EmployeesFile {
         dataEmployee.addEmployee(10005, "Marcela", "Teacher", "2nd", "Highschool");
         dataEmployee.addEmployee(10006, "Jesús", "TEACHER", "3d", "kiNDERGARten");
         dataEmployee.addEmployee(10007, "Francisco", "TEACHER", "2nd", "Kindergarten");
-        dataEmployee.addEmployee(10008, "Jóse Luis", "teacher", "2nd", "HighSchool");
+        dataEmployee.addEmployee(10008, "Jóse Luis", "Teacher", "2nd", "HighSchool");
         //dataEmployee.addEmployee(10001, "Luis", "Director", "5th", "MiddleSchool");
         //dataEmployee.addEmployee(101, "Luis", "Director", "6th", "MiddlesCHOOL");
 
-        //dataEmployee.addNewCareer(10001, "teacher");
+       dataEmployee.changeCareer(10001, "DIRECTOR");
 
-        dataEmployee.printAllEmployees();
+       dataEmployee.printAllEmployees();
 
     }
 }
