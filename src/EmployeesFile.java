@@ -296,7 +296,30 @@ public class EmployeesFile {
         }
     }
 
-    //reporteMaestrosNivel -> imprimir todos los maestros de cierto nivel dado datos correspondientes
+
+    /*    *******************************************************************************************************
+     *    PRINT THE WHOLE LIST OF TEACHERS PER LEVEL                                                            *
+     *  *********************************************************************************************************/
+    public void printTeachersPerLevel (String level){
+        Boolean flag= true;
+
+        for( Employees emp: listEmployees) {
+            if (flag) {
+                if (emp.getGroup().contains(level.toUpperCase())){
+                    System.out.println("----------     EMPLOYEE     ----------------");
+                    System.out.println("ID: " + emp.getId() + "\n"
+                            + "          Name: " +  emp.getName() + "\n"
+                            + "          Career: " +  emp.getCareer() + "\n"
+                            + "          Group: " +  emp.getGroup() + "\n");
+
+                }
+
+            } else {
+                System.out.println("There are not Teachers in this level.");
+            }
+        }
+    }
+
 
 
     public static void main(String[] args){
@@ -308,7 +331,7 @@ public class EmployeesFile {
         dataEmployee.addEmployee(10003, "Cassandra", "Teacher", "4th", "mIDDLESCHOOL");
         dataEmployee.addEmployee(10004, "Ramiro", "ADmiNistrator", "1st", "HighSchool");
         dataEmployee.addEmployee(10005, "Marcela", "Director", "2nd", "Highschool");
-        dataEmployee.addEmployee(10006, "Jesús", "teacher", "3d", "kiNDERGARten");
+        dataEmployee.addEmployee(10006, "Jesús", "teacher", "3rd", "kiNDERGARten");
         dataEmployee.addEmployee(10007, "Francisco", "TEACHER", "2nd", "Kindergarten");
         dataEmployee.addEmployee(10008, "Jóse Luis", "Teacher", "2nd", "HighSchool");
         //dataEmployee.addEmployee(10001, "Luis", "Director", "5th", "MiddleSchool");
@@ -324,7 +347,9 @@ public class EmployeesFile {
 
        //dataEmployee.printAllEmployees();
 
-        dataEmployee.printEmployeePerCareer("");
+        //dataEmployee.printEmployeePerCareer("");
+
+        dataEmployee.printTeachersPerLevel("HighSCHOOL");
 
     }
 }
