@@ -226,8 +226,10 @@ public class EmployeesFile {
 
 
 
-    //bajaEmpleado -> Recibe el id del empleado, validar q si es maestro no tenga grupo asignado,
-    // así como el q id del empleado exista en la lista.
+    /*    ************************************************************************************************************
+     *    CHECK THE EMPLOYEE WITH THE ID, AND IF IS A TEACHER AND DOESN´T HAVE A GROUP, THE EMPLOYEE CAN BE REMOVED. *
+     *    IF THE EMPLOYEE IS A DIRECTOR OR AN ADMINISTRATOR CAN BE REMOVED.                                          *
+     *  **************************************************************************************************************/
     public void removeEmployee(int id){
         int index= getIndexEmployeeFromList(id);
 
@@ -257,7 +259,6 @@ public class EmployeesFile {
 
     /*    *******************************************************************************************************
      *    PRINT THE WHOLE LIST OF EMPLOYEES                                                                     *
-     *                                                                                                          *
      *  *********************************************************************************************************/
     public void printAllEmployees (){
        for (Employees emp: listEmployees){
@@ -269,9 +270,34 @@ public class EmployeesFile {
        }
     }
 
-    //reporteEmpleadosPuesto -> imprimir todos los empleados de un puesto dado y sus datos correspondientes
+
+
+    /*    *******************************************************************************************************
+     *    PRINT THE WHOLE LIST OF EMPLOYEES PER CAREER.                                                         *
+     *  *********************************************************************************************************/
+    public void printEmployeePerCareer(String career){
+        Boolean flag= true;
+
+        for(Employees employee: listEmployees){
+            if(flag){
+                if(employee.getCareer().equals(career.toUpperCase())){
+                    System.out.println("----------     EMPLOYEE     ----------------");
+                    System.out.println("ID: " + employee.getId() + "\n"
+                        + "          Name: " +  employee.getName() + "\n"
+                        + "          Career: " +  employee.getCareer() + "\n"
+                        + "          Group: " +  employee.getGroup() + "\n");
+
+                }
+
+            }else {
+                flag= false;
+                System.out.println("There are not Employees with that career.");
+            }
+        }
+    }
 
     //reporteMaestrosNivel -> imprimir todos los maestros de cierto nivel dado datos correspondientes
+
 
     public static void main(String[] args){
         EmployeesFile dataEmployee = new EmployeesFile();
@@ -294,9 +320,11 @@ public class EmployeesFile {
 
        //dataEmployee.removeGroupForTeacher(10003);
 
-        dataEmployee.removeEmployee(10005);
+        //dataEmployee.removeEmployee(10005);
 
-       dataEmployee.printAllEmployees();
+       //dataEmployee.printAllEmployees();
+
+        dataEmployee.printEmployeePerCareer("");
 
     }
 }
